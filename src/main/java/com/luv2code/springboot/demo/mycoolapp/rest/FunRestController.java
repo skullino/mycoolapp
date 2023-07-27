@@ -13,6 +13,7 @@ public class FunRestController {
 
 	@Autowired
 	public FunRestController(@Qualifier("cricketCoach") Coach theCoach) {
+		System.out.println("In constructor: " + getClass().getSimpleName());
 		myCoach = theCoach;
 	}
 
