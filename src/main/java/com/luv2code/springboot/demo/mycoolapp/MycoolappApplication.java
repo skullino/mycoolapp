@@ -21,10 +21,10 @@ public class MycoolappApplication {
 
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
-		return runner -> createStudent(studentDAO);
+		return runner -> createMultipleStudents(studentDAO);
 	}
 
-	private void createStudent(StudentDAO studentDAO) {
+	private void createStudent(StudentDAO studentDAO, String firstName, String lastName, String email) {
 		System.out.println("Creating new student object...");
 		Student student = new Student("Paul", "Doe", "paul@luv2code.com");
 
@@ -32,5 +32,13 @@ public class MycoolappApplication {
 		studentDAO.save(student);
 
 		System.out.println("Saved student. Generated id: " + student.getId());
+	}
+
+	private void createMultipleStudents(StudentDAO studentDAO) {
+		createStudent(studentDAO, "John", "Xvim", "email1@gmail.com");
+		createStudent(studentDAO, "Xohn", "Tim", "email11@gmail.com");
+		createStudent(studentDAO, "Tohn", "Qim", "email2@gmail.com");
+		createStudent(studentDAO, "Fred", "Xiem", "email241@gmail.com");
+		createStudent(studentDAO, "Qohn", "Xism", "email1241@gmail.com");
 	}
 }
