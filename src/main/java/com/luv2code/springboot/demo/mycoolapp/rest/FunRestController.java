@@ -10,11 +10,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class FunRestController {
 	private Coach myCoach;
+    private Coach anotherCoach;
 
 	@Autowired
-	public FunRestController(@Qualifier("cricketCoach") Coach theCoach) {
+	public FunRestController(
+            @Qualifier("cricketCoach") Coach theCoach,
+            @Qualifier("cricketCoach") Coach theAnotherCoach) {
 		System.out.println("In constructor: " + getClass().getSimpleName());
 		myCoach = theCoach;
+        anotherCoach = theAnotherCoach;
 	}
 
 	@Value("${coach.name}")
@@ -37,8 +41,13 @@ public class FunRestController {
 		return "Today is your lucky day.";
 	}
 
-	@GetMapping("/teaminfo")
-	public String getTeamInfo() {
-		return "Coach: " + coachName + ", Team: " + teamName;
-	}
+    @GetMapping("/teaminfo")
+    public String getTeamInfo() {
+        return "Coach: " + coachName + ", Team: " + teamName;
+    }
+
+    @GetMapping("/check")
+    public String check() {
+        return "Comparing beans: myCoach == anotherCoach, " + (myCoach == anotherCoach);
+    }
 }
