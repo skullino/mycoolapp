@@ -25,7 +25,13 @@ public class MycoolappApplication {
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		//return runner -> createMultipleStudents(studentDAO);
 		//return runner -> readStudent(studentDAO);
-		return runner -> queryForStudents(studentDAO);
+//		return runner -> queryForStudents(studentDAO);
+		return runner -> queryForStudentsByLastName(studentDAO);
+	}
+
+	private void queryForStudentsByLastName(StudentDAO studentDAO) {
+		List<Student> theStudents = studentDAO.findByLastName("Doe");
+		theStudents.forEach(student -> System.out.println(student));
 	}
 
 	private void createStudent(StudentDAO studentDAO, String firstName, String lastName, String email) {
