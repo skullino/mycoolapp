@@ -26,7 +26,20 @@ public class MycoolappApplication {
 		//return runner -> createMultipleStudents(studentDAO);
 		//return runner -> readStudent(studentDAO);
 //		return runner -> queryForStudents(studentDAO);
-		return runner -> queryForStudentsByLastName(studentDAO);
+//		return runner -> queryForStudentsByLastName(studentDAO);
+		return runner -> updateStudent(studentDAO);
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		int studentId = 1;
+		System.out.println("Getting student with id: " + studentId);
+		Student myStudent = studentDAO.findById(1);
+
+		System.out.println("Updating student...");
+		myStudent.setFirstName("Scooby");
+		studentDAO.update(myStudent);
+
+		System.out.println("Update student: " + myStudent);
 	}
 
 	private void queryForStudentsByLastName(StudentDAO studentDAO) {
