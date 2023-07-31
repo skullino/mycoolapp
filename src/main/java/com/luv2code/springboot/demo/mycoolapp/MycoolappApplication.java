@@ -7,6 +7,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import java.util.List;
+
 //@SpringBootApplication(
 //		scanBasePackages = {"com.lu2code.springboot",
 //							"com.luv2code.util"
@@ -22,12 +24,13 @@ public class MycoolappApplication {
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
 		//return runner -> createMultipleStudents(studentDAO);
-		return runner -> readStudent(studentDAO);
+		//return runner -> readStudent(studentDAO);
+		return runner -> queryForStudents(studentDAO);
 	}
 
 	private void createStudent(StudentDAO studentDAO, String firstName, String lastName, String email) {
 		System.out.println("Creating new student object...");
-		Student student = new Student("Paul", "Doe", "paul@luv2code.com");
+		Student student = new Student(firstName, lastName, email);
 
 		System.out.println("Saving the student...");
 		studentDAO.save(student);
@@ -58,5 +61,10 @@ public class MycoolappApplication {
 		Student myStudent = studentDAO.findById(theId);
 
 		System.out.println("Found the student: " + myStudent);
+	}
+
+	private void queryForStudents(StudentDAO studentDAO) {
+		List<Student> theStudents = studentDAO.findAll();
+		theStudents.forEach(student -> System.out.println(student));
 	}
 }
