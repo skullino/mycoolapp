@@ -23,13 +23,13 @@ public class MycoolappApplication {
 
 	@Bean
 	public CommandLineRunner commandLineRunner(StudentDAO studentDAO) {
-		//return runner -> createMultipleStudents(studentDAO);
+		return runner -> createMultipleStudents(studentDAO);
 		//return runner -> readStudent(studentDAO);
 //		return runner -> queryForStudents(studentDAO);
 //		return runner -> queryForStudentsByLastName(studentDAO);
 //		return runner -> updateStudent(studentDAO);
 //		return runner -> removeStudent(studentDAO);
-		return runner -> deleteAllStudents(studentDAO);
+//		return runner -> deleteAllStudents(studentDAO);
 	}
 
 	private void deleteAllStudents(StudentDAO studentDAO) {
