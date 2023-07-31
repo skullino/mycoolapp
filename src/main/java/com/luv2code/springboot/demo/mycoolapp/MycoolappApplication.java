@@ -27,7 +27,22 @@ public class MycoolappApplication {
 		//return runner -> readStudent(studentDAO);
 //		return runner -> queryForStudents(studentDAO);
 //		return runner -> queryForStudentsByLastName(studentDAO);
-		return runner -> updateStudent(studentDAO);
+//		return runner -> updateStudent(studentDAO);
+//		return runner -> removeStudent(studentDAO);
+		return runner -> deleteAllStudents(studentDAO);
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("Deleting all students...");
+		int numRowsDeleted = studentDAO.deleteAll();
+
+		System.out.println("Deleted row count: " + numRowsDeleted);
+	}
+
+	private void removeStudent(StudentDAO studentDAO) {
+		int studentId = 3;
+		System.out.println("Deleting student with id: " + studentId);
+		studentDAO.delete(studentId);
 	}
 
 	private void updateStudent(StudentDAO studentDAO) {
